@@ -13,7 +13,7 @@
 	<div class="flex flex-col p-10 w-1/2 bg-white">
 		<h1 class="self-center font-bold text-3xl mb-10">Login</h1>
 		
-		<form class="flex flex-col">
+		<form action="login.do" method="POST" class="flex flex-col">
 			<div class="flex items-center border rounded-lg mb-7 bg-gray-200 px-3">
 				<span class="material-icons text-gray-500">person</span>
 				<input class="px-3 py-4 bg-transparent outline-none w-full" type="text" name="username" placeholder="Username" required/>

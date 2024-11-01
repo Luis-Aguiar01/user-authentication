@@ -2,6 +2,7 @@ package br.edu.dsw1.repositories;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 import br.edu.dsw1.entities.User;
 
@@ -24,6 +25,13 @@ public class UserDAOImp implements UserDAO {
 		if (user != null && !users.contains(user)) {
 			users.add(user);
 		}
+	}
+	
+	@Override
+	public Optional<User> findByUsername(String username) {
+		return users.stream()
+				.filter(user -> user.getUsername().equals(username))
+				.findFirst();
 	}
 	
 	public static UserDAO getInstance() {
