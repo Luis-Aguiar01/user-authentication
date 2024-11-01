@@ -1,16 +1,21 @@
 package br.edu.dsw1.entities;
 
+import java.time.LocalDateTime;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
 public class User {
 	private String username;
 	private String password;
+	private final List<LocalDateTime> dateTimeLoginHistory;
 	
 	public User() {
-		
+		dateTimeLoginHistory = new LinkedList<>();
 	}
 	
 	public User(String username, String password) {
+		this();
 		this.username = username;
 		this.password = password;
 	}
@@ -29,6 +34,10 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public void addDateTimeLogin(LocalDateTime dateTime) {
+		dateTimeLoginHistory.add(dateTime);
 	}
 
 	@Override

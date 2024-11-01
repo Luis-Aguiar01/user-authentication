@@ -1,6 +1,7 @@
 package br.edu.dsw1;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 import br.edu.dsw1.repositories.UserDAO;
 import br.edu.dsw1.repositories.UserDAOImp;
@@ -26,14 +27,19 @@ public class LoginServlet extends HttpServlet {
 		
 		if (isValidUserCredentials(username, password)) {
 			var session = request.getSession();
+			var user = repository.findByUsername(username).get();
 			session.setAttribute("user", username);
+			user.addDateTimeLogin(LocalDateTime.now());
 			response.sendRedirect("welcome.jsp");
+		} else {
+			request.setAttribute("error", true);
+			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}
 	}
 	
 	private boolean isValidUserCredentials(String username, String password) {
 		var user = repository.findByUsername(username).orElse(null);
-		return user.getUsername().equals(username) && 
+		return user != null && user.getUsername().equals(username) && 
 				user.getPassword().equals(password);
 	}
 }

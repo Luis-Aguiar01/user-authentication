@@ -30,7 +30,7 @@ public class RegisterServlet extends HttpServlet {
 			if (isUsernameAvailable(username)) {
 				var user = new User(username, password);
 				repository.insertUser(user);
-				response.sendRedirect("/login.jsp");
+				response.sendRedirect("login.jsp");
 			} else {
 				out.println("Nome de usuário já cadastrado.");
 			}
