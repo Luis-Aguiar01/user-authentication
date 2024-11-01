@@ -24,10 +24,16 @@ public class LoginServlet extends HttpServlet {
 		var username = request.getParameter("username");
 		var password = request.getParameter("password");
 		
-		
+		if (isValidUserCredentials(username, password)) {
+			var session = request.getSession();
+			session.setAttribute("user", username);
+			response.sendRedirect("welcome.jsp");
+		}
 	}
 	
-	private boolean isValidUser(String username, String password) {
-		return true;
+	private boolean isValidUserCredentials(String username, String password) {
+		var user = repository.findByUsername(username).orElse(null);
+		return user.getUsername().equals(username) && 
+				user.getPassword().equals(password);
 	}
 }
