@@ -14,6 +14,10 @@ public class RegisterSevlet extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		var user = request.getParameter("user");
+		var password = request.getParameter("password");
+		
+		
 		
 	}
 }
