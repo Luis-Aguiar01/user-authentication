@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="flex flex-col justify-center items-center min-h-screen bg-gray-500 font-mono text-white ">
+<body class="flex flex-col justify-center items-center min-h-screen bg-gray-500 font-mono text-white">
 	
 	<form action="register.do" method="POST" class="flex flex-col w-1/2 p-6 bg-sky-950 rounded-md shadow-lg shadow-black">
 		<div class="flex flex-col py-3">
