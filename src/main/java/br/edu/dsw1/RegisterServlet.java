@@ -30,15 +30,15 @@ public class RegisterServlet extends HttpServlet {
 			if (isUsernameAvailable(username)) {
 				var user = new User(username, password);
 				repository.insertUser(user);
-				out.println("O nome de usuário já está cadastrado.");
-			} else {
 				response.sendRedirect("/login.jsp");
+			} else {
+				out.println("Nome de usuário já cadastrado.");
 			}
 		}
 	}
 	
 	private boolean isUsernameAvailable(String username) {
 		return repository.getAll().stream()
-				.noneMatch(user -> user.getUsername().equals(username));
+				.noneMatch(user -> user.getUsername().equalsIgnoreCase(username));
 	}
 }
