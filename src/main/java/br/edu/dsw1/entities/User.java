@@ -39,6 +39,10 @@ public class User {
 	public void addDateTimeLogin(LocalDateTime dateTime) {
 		dateTimeLoginHistory.add(dateTime);
 	}
+	
+	public List<LocalDateTime> getHistory() {
+		return dateTimeLoginHistory;
+	}
 
 	@Override
 	public int hashCode() {
