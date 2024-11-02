@@ -31,8 +31,8 @@
 		</div>
 		
 		<div class="flex font-bold text-white text-lg w-full justify-center gap-5 mb-10 mt-5">
-			<a class="bg-blue-700 w-1/4 py-4 px-4 text-center rounded-lg hover:bg-blue-600 cursor-pointer"><button>Login History</button></a>
-			<a class="bg-red-700  w-1/4 py-4 px-4 text-center rounded-lg hover:bg-red-500 cursor-pointer"><button>Logout</button></a>
+			<a href="history.do" class="bg-blue-700 w-1/4 py-4 px-4 text-center rounded-lg hover:bg-blue-600 cursor-pointer"><button>Login History</button></a>
+			<a href="" class="bg-red-700  w-1/4 py-4 px-4 text-center rounded-lg hover:bg-red-500 cursor-pointer"><button>Logout</button></a>
 		</div>
 	</div>	
 	
