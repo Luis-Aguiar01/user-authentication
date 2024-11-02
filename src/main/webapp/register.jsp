@@ -13,7 +13,7 @@
 <title>Register Page</title>
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="flex flex-col justify-center items-center min-h-screen bg-gray-500 font-mono bg-gradient-to-r from-black to-gray-800">
+<body class="flex flex-col justify-center items-center min-h-screen font-mono bg-gradient-to-r from-black to-gray-800">
 	
 	<div class="flex flex-col p-10 w-1/2 bg-white">
 		<h1 class="self-center font-bold text-3xl mb-10">Sign In</h1>
