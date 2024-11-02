@@ -41,6 +41,12 @@
 				<input class="px-3 py-4 bg-transparent outline-none text-base w-full" type="password" name="confirm-password" placeholder="Confirm password" required/>
 			</div>
 			
+			<p class="self-center mb-4">Already have an account? 
+				<a href="login.jsp" class="text-blue-400 font-bold cursor-pointer hover:underline">
+					Click here to log in.
+				</a>
+			</p>
+			
 			<input class="text-lg mt-2 bg-black py-3 self-center w-1/3 rounded-lg text-white hover:bg-gray-900 cursor-pointer font-bold" type="submit" value="Enviar">
 		</form>
 	</div>
