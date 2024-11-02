@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+<%
+	var isUsernameUnavailable = request.getParameter("error-username");
+	var arePasswordsDifferent = request.getParameter("error-password");
+%>    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +17,16 @@
 	
 	<div class="flex flex-col p-10 w-1/2 bg-white">
 		<h1 class="self-center font-bold text-3xl mb-10">Sign In</h1>
+		
+		<% if (isUsernameUnavailable != null) { %>
+			<div class="self-center justify-self-start mb-5 text-red-700 text-xl">
+				Register failed. Username unavailable.
+			</div>
+		<% } else if (arePasswordsDifferent != null) {%>
+			<div class="self-center justify-self-start mb-5 text-red-700 text-xl">
+				Register failed. Passwords are not the same.
+			</div>
+		<% } %>
 			
 		<form action="register.do" method="POST" class="flex flex-col">
 			<div class="flex items-center border rounded-lg mb-7 bg-gray-200 px-3">
@@ -22,7 +38,7 @@
 			</div>
 			
 			<div class="flex items-center border rounded-lg mb-7 bg-gray-200 px-3">
-				<input class="px-3 py-4 bg-transparent outline-none text-base w-full" type="password" name="password" placeholder="Confirm password" required/>
+				<input class="px-3 py-4 bg-transparent outline-none text-base w-full" type="password" name="confirm-password" placeholder="Confirm password" required/>
 			</div>
 			
 			<input class="text-lg mt-2 bg-black py-3 self-center w-1/3 rounded-lg text-white hover:bg-gray-900 cursor-pointer font-bold" type="submit" value="Enviar">

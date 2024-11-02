@@ -24,15 +24,19 @@ public class RegisterServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		var username = request.getParameter("username");
 		var password = request.getParameter("password");
-		var out = response.getWriter();
+		var confirmPassword = request.getParameter("confirm-password");
 		
-		if (username != null && password != null) {
+		if (username != null && password != null && confirmPassword != null) {
 			if (isUsernameAvailable(username)) {
-				var user = new User(username, password);
-				repository.insertUser(user);
-				response.sendRedirect("login.jsp");
+				if (arePasswordsIdentical(password, confirmPassword)) {
+					var user = new User(username, password);
+					repository.insertUser(user);
+					response.sendRedirect("login.jsp");
+				} else {
+					response.sendRedirect("register.jsp?error-password=true");
+				}
 			} else {
-				out.println("Nome de usuário já cadastrado.");
+				response.sendRedirect("register.jsp?error-username=true");
 			}
 		}
 	}
@@ -40,5 +44,9 @@ public class RegisterServlet extends HttpServlet {
 	private boolean isUsernameAvailable(String username) {
 		return repository.getAll().stream()
 				.noneMatch(user -> user.getUsername().equalsIgnoreCase(username));
+	}
+	
+	private boolean arePasswordsIdentical(String password, String confirmPassword) {
+		return password.equals(confirmPassword);
 	}
 }
