@@ -32,14 +32,14 @@ public class LoginServlet extends HttpServlet {
 			user.addDateTimeLogin(LocalDateTime.now());
 			response.sendRedirect("welcome.jsp");
 		} else {
-			request.setAttribute("error", true);
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+			response.sendRedirect("login.jsp?error=true");
 		}
 	}
 	
 	private boolean isValidUserCredentials(String username, String password) {
 		var user = repository.findByUsername(username).orElse(null);
-		return user != null && user.getUsername().equals(username) && 
-				user.getPassword().equals(password);
+		return user != null && 
+			   user.getUsername().equals(username) && 
+			   user.getPassword().equals(password);
 	}
 }

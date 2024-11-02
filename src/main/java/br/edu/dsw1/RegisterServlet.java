@@ -22,7 +22,7 @@ public class RegisterServlet extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		var username = request.getParameter("user");
+		var username = request.getParameter("username");
 		var password = request.getParameter("password");
 		var out = response.getWriter();
 		
