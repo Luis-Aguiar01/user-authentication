@@ -36,6 +36,11 @@ public class LoginServlet extends HttpServlet {
 		}
 	}
 	
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.sendRedirect("login.jsp");
+	}
+	
 	private boolean isValidUserCredentials(String username, String password) {
 		var user = repository.findByUsername(username).orElse(null);
 		return user != null && 

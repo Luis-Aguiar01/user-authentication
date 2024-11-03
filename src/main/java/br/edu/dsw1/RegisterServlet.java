@@ -41,6 +41,11 @@ public class RegisterServlet extends HttpServlet {
 		}
 	}
 	
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.sendRedirect("register.jsp");;
+	}
+	
 	private boolean isUsernameAvailable(String username) {
 		return repository.getAll().stream()
 				.noneMatch(user -> user.getUsername().equalsIgnoreCase(username));
