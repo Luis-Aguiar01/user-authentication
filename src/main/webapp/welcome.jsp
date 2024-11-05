@@ -1,3 +1,5 @@
+<%@page import="java.time.LocalDateTime"%>
+<%@page import="br.edu.dsw1.entities.User"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="br.edu.dsw1.repositories.UserDAOImp"%>
 <%@page import="br.edu.dsw1.repositories.UserDAO"%>
@@ -5,10 +7,17 @@
 
 <% 
 	UserDAO repository = UserDAOImp.getInstance();
-	var username = (String) session.getAttribute("user");
-	var user = repository.findByUsername(username).get();
-	var size = user.getHistory().size();
-	var currentLoginDateTime = user.getHistory().get(size - 1);
+	String username = (String) session.getAttribute("user");
+	User user = null;
+	LocalDateTime currentLoginDateTime = null;
+	
+	user = repository.findByUsername(username).orElse(null);
+	
+	if (user != null) {
+		var size = user.getHistory().size();
+		currentLoginDateTime = user.getHistory().get(size - 1);
+	}
+	
 	var formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 %>
 
@@ -21,6 +30,8 @@
 </head>
 
 <body class="bg-gradient-to-r from-black to-gray-800 min-h-screen flex flex-col font-mono items-center justify-center box-border">
+	
+	<% if (user != null) { %>
 	
 	<div class="border-solid border-2 border-gray-400 rounded-lg w-2/3">
 		<h1 class="font-bold text-4xl text-center text-white mt-10 leading-relaxed">Welcome to your page, <%= user.getUsername() %></h1>
@@ -35,6 +46,11 @@
 			<a href="logout.do" class="bg-red-700  w-1/4 py-4 px-4 text-center rounded-lg hover:bg-red-500 cursor-pointer"><button>Logout</button></a>
 		</div>
 	</div>	
+	
+	<% } else { 
+			response.sendRedirect("login.jsp");
+	   }
+	%>
 	
 </body>
 </html>
